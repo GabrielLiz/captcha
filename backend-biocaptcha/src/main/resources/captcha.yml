@@ -1,0 +1,120 @@
+openapi: 3.0.3
+servers:
+  # Added by API Auto Mocking Plugin
+  - url: 'http://localhost:8080'
+info:
+  description: This is a simple API
+  version: "1.0.0"
+  title: Captcha
+  contact:
+    email: gilberth89@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: captcha
+    description: Operations available to regular developers
+paths:
+  /v1/settings:
+    get:
+      tags:
+        - captcha
+      summary: recover settings captcha
+      operationId: getSettings
+      description: |
+        Set the configuration to generate captcha
+      responses:
+        '200':
+          description: settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettingsDTO'
+        '400':
+          description: bad input parameter
+    post:
+      tags:
+        - captcha
+      summary: Update settings captcha
+      operationId: saveSettings
+      responses:
+        '200':
+          description: settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettingsDTO'
+        '400':
+          description: 'invalid input, object invalid'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SettingsDTO'
+        description: validation
+  /v1/captcha:
+    get:
+      tags:
+        - captcha
+      summary: recovery captcha
+      operationId: recoverCaptcha
+      description: |
+        By passing in the appropriate options, recover the captcha
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Captcha'
+        '400':
+          description: bad input parameter
+  /v1/validate:
+    post:
+      tags:
+        - captcha
+      summary: Validate Captcha
+      operationId: validateCaptcha
+      responses:
+        '200':
+          description: 'invalid input, object invalid'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/validation'
+        '400':
+          description: 'invalid input, object invalid'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Captcha'
+        description: validation
+components:
+  schemas:
+    Captcha:
+      properties:
+        value:
+          type: string
+        captchaValue:
+          type: string
+      type: object
+    validation:
+      properties:
+        correct:
+          type: boolean
+    SettingsDTO:
+      properties:
+        captchalength:
+          type: integer
+          example: 6
+        attempts:
+          type: integer
+          example: 3
+        caseeSensitive:
+          type: boolean
+          example: y
+        mode:
+          type: string
+          enum: [ALPHANUMERIC, ALPHA, NUM ]
+      type: object
