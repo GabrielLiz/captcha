@@ -1,0 +1,39 @@
+<div class="container row">
+
+    <h1>Settings</h1>
+
+    <mat-form-field appearance="fill" class="col-12">
+        <mat-label>Tamaño del captcha</mat-label>
+        <input [formControl]="captchalengthInput" placeholder="Captcha" name="captcha" matInput required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="col-12" >
+        <mat-label>Intentos</mat-label>
+
+        <input [formControl]="AttempsInput" placeholder="Captcha" name="captcha" matInput required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="col-12">
+        <mat-label>Case sensitve</mat-label>
+        <mat-select [formControl]="caseSensitiveInput">
+          <mat-option value="true">True</mat-option>
+          <mat-option value="false">False</mat-option>
+        </mat-select>    </mat-form-field>
+
+    <mat-form-field  appearance="fill" class="col-12" >
+        <mat-label>Tipo de captcha</mat-label>
+        <mat-select [formControl]="modeInput">
+          <mat-option value="ALPHANUMERIC">Alphanumerico</mat-option>
+          <mat-option value="NUM">Numerico</mat-option>
+          <mat-option value="ALPHA">Alpha</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    <div class="col-12 d-flex flex-row-reverse">
+
+        <button mat-raised-button color="warn" (click)="close()" class="m-3">Cerrar</button>
+
+        <button mat-raised-button color="secondary" (click)="save()" class="m-3">Guardar</button>
+
+    </div>
+</div>
