@@ -9,7 +9,10 @@ Swagger http://localhost:8080/swagger-ui.html definicion de la API
 ## Ejecucion
 
 - Backend `mvn clean install` ->  /target `java -jar backend-biocaptcha-0.0.1-SNAPSHOT.jar`
-- Frontend `ng serve`
+
+- Front: 
+   - Installar dependencias `npm install` 
+   - Levantar el servicio `ng serve`
 ## Testing unitario
 
 La clase ServiceCaptchaImpl tiene los test unitarios realizados con Stepverifier al ser desarrollo reactivo.
