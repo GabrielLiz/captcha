@@ -1,7 +1,5 @@
 package com.captcha.service;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.ArgumentMatchers.anyObject;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -18,8 +16,8 @@ import com.captcha.entity.Settings;
 import com.captcha.mapper.SettingMapper;
 import com.captcha.model.Captcha;
 import com.captcha.model.SettingsDTO;
-import com.captcha.model.Validation;
 import com.captcha.model.SettingsDTO.ModeEnum;
+import com.captcha.model.Validation;
 
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
