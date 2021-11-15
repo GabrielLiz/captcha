@@ -8,7 +8,9 @@ Swagger http://localhost:8080/swagger-ui.html definicion de la API
 ![alt text](https://github.com/GabrielLiz/captcha/blob/main/api-example.png?raw=true)
 ## Ejecucion
 
-- Backend `mvn clean install` ->  /target `java -jar backend-biocaptcha-0.0.1-SNAPSHOT.jar`
+- Backend 
+   - instalar y compilar `mvn clean install` 
+   -  Ejecutar en la ruta la  `/target` con el comando `java -jar backend-biocaptcha-0.0.1-SNAPSHOT.jar`
 
 - Front: 
    - Installar dependencias `npm install` 
