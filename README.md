@@ -1,4 +1,4 @@
-# captcha-project
+# Captcha
 
 Apliacacion componente captcha
 
