@@ -27,7 +27,7 @@ public class ImageServiceImpl implements ImageService {
 		client = WebClient.builder().baseUrl("https://microsoft-computer-vision3.p.rapidapi.com")
 				.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
 				.defaultHeader("x-rapidapi-host", "microsoft-computer-vision3.p.rapidapi.com")
-				.defaultHeader("x-rapidapi-key", "0518310d8bmshcbe780f085740dep16d246jsn87ef6922955c").build();
+				.defaultHeader("x-rapidapi-key", "#####").build();
 	}
 
 	public Mono<ImageDescription> request(String url) {
