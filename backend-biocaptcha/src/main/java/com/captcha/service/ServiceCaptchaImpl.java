@@ -3,15 +3,20 @@ package com.captcha.service;
 import java.util.Random;
 
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import com.captcha.entity.Settings;
 import com.captcha.mapper.SettingMapper;
 import com.captcha.model.Captcha;
 import com.captcha.model.SettingsDTO;
-import com.captcha.model.ValidCaptcha;
-import com.captcha.model.Validation;
 import com.captcha.model.SettingsDTO.ModeEnum;
+import com.captcha.model.Validation;
 
 import reactor.core.publisher.Mono;
 
@@ -23,6 +28,7 @@ public class ServiceCaptchaImpl implements ServiceCaptcha {
 
     /** The template. */
     private ReactiveMongoTemplate template;
+    
 	/**
 	 * Instantiates a new service captcha impl.
 	 *
@@ -78,7 +84,7 @@ public class ServiceCaptchaImpl implements ServiceCaptcha {
 	 */
 	@Override
 	public Mono<SettingsDTO> getSettings() {
-		return template.findById("setting",Settings.class).map(data -> SettingMapper.toSettingsDTO(data));
+	 return template.findById("setting",Settings.class).map(data -> SettingMapper.toSettingsDTO(data));
 	}
 
 	/**

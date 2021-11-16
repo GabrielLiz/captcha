@@ -1,8 +1,8 @@
-FROM node:14-alpine AS build
+FROM node:latest as node
 WORKDIR /app
 COPY . .
 RUN npm install
-RUN npm run build
+RUN npm run build -- --prod
 
 FROM nginx:alpine
-COPY --from=build /app/dist/front-biocaptcha /usr/share/nginx/html
+COPY --from=node /app/dist/front-biocaptcha /usr/share/nginx/html 

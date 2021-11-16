@@ -27,7 +27,7 @@ export class SettingsComponent implements OnInit {
 
     let sconf: settings = { captchalength: this.captchalengthInput.value, attempts: this.AttempsInput.value, caseeSensitive: this.caseSensitiveInput.value, mode: this.modeInput.value };
     console.log(sconf);
-    this.http.post<settings>("http://localhost:8080/v1/settings", sconf).subscribe({
+    this.http.post<settings>("http://localhost:8080/v1/captcha/settings", sconf).subscribe({
       next: data => {
         console.log(data)
       },

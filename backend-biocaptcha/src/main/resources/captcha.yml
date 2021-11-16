@@ -13,9 +13,11 @@ info:
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 tags:
   - name: captcha
-    description: Operations available to regular developers
+    description: Api captcha
+  - name: biometria
+    description: Api images
 paths:
-  /v1/settings:
+  /v1/captcha/settings:
     get:
       tags:
         - captcha
@@ -69,7 +71,7 @@ paths:
                 $ref: '#/components/schemas/Captcha'
         '400':
           description: bad input parameter
-  /v1/validate:
+  /v1/captcha/validate:
     post:
       tags:
         - captcha
@@ -90,6 +92,31 @@ paths:
             schema:
               $ref: '#/components/schemas/Captcha'
         description: validation
+  /v1/image/description:
+    get:
+      tags:
+        - biometria
+      summary: Analize the image recover the description of it 
+      operationId: imageDescription
+      responses:
+        '200':
+          description: 'invalid input, object invalid'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/imageDescription'
+        '400':
+          description: 'invalid input, object invalid'
+      parameters:
+      - in: query
+        name: url
+        schema:
+          type: array
+          items:
+            type: string
+          description: urls
 components:
   schemas:
     Captcha:
@@ -103,11 +130,31 @@ components:
       properties:
         correct:
           type: boolean
+    imageDescription:
+      properties:
+        faces:
+          type: array
+          items:
+            $ref: '#/components/schemas/person'
+        description:
+          $ref: '#/components/schemas/captions'
+    person:
+      properties:
+        age:
+          type: string
+        gender:
+          type: string    
+    captions:
+      properties:
+        captions:
+          type: array
+          items:
+            type: object
     SettingsDTO:
       properties:
         captchalength:
           type: integer
-          example: 6
+          example: 6 q
         attempts:
           type: integer
           example: 3

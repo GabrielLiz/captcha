@@ -1,5 +1,7 @@
 package com.captcha.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
@@ -9,13 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.server.ServerWebExchange;
 
+import com.captcha.ImageApi;
 import com.captcha.V1Api;
 import com.captcha.model.Captcha;
+import com.captcha.model.ImageDescription;
 import com.captcha.model.SettingsDTO;
-import com.captcha.model.ValidCaptcha;
 import com.captcha.model.Validation;
+import com.captcha.service.ImageService;
 import com.captcha.service.ServiceCaptcha;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
@@ -23,18 +28,23 @@ import reactor.core.publisher.Mono;
  */
 @CrossOrigin(origins = "*")
 @RestController
-public class CaptchaController implements V1Api {
+public class CaptchaController implements V1Api,ImageApi{
 
 	/** The captcha service. */
 	private ServiceCaptcha captchaService;
+	
+	/** The image service. */
+	private ImageService imageService;
 
 	/**
 	 * Instantiates a new captcha controller.
 	 *
 	 * @param service the service
+	 * @param image the image
 	 */
-	public CaptchaController(ServiceCaptcha service) {
+	public CaptchaController(ServiceCaptcha service, ImageService image) {
 		this.captchaService = service;
+		this.imageService=image;
 	}
 	/**
 	 * Recover captcha.
@@ -86,8 +96,24 @@ public class CaptchaController implements V1Api {
 	 * @return the settings
 	 */
 	@Override
-	public Mono<ResponseEntity<SettingsDTO>> getSettings(ServerWebExchange exchange) {
+	public Mono<ResponseEntity<SettingsDTO>> getSettings(ServerWebExchange exchange) { 
 		return captchaService.getSettings().map(data -> new ResponseEntity<SettingsDTO>(data, HttpStatus.OK));
 	}
+	
+	/**
+	 * Image description.
+	 *
+	 * @param url the url
+	 * @param exchange the exchange
+	 * @return the mono
+	 */
+	@Override
+	public Mono<ResponseEntity<Flux<ImageDescription>>> imageDescription(@Valid List<String> url,
+			ServerWebExchange exchange) {
+		return Mono.just(new ResponseEntity<Flux<ImageDescription>>(imageService.getImageDescription(url),HttpStatus.OK));
+	}
+
+
+
 
 }

@@ -20,8 +20,8 @@ export class CaptchaComponent implements OnInit {
 
   baseURL = 'http://localhost:8080';
   captchaURI = '/v1/captcha';
-  settingURI = '/v1/settings';
-  validateaURI = '/v1/validate';
+  settingURI = '/v1/captcha/settings';
+  validateaURI = '/v1/captcha/validate';
   codeCaptcha: string;
   captcha: string = '';
   captchaTrys: number = 0;
@@ -145,7 +145,7 @@ export class CaptchaComponent implements OnInit {
   }
 
 
-  data$ = fromFetch('http://localhost:8080/v1/captcha').pipe(
+  data$ = fromFetch(this.baseURL+this.captchaURI).pipe(
     switchMap(response => {
       if (response.ok) {
         // OK devuelve datos

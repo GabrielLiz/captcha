@@ -38,7 +38,7 @@ public class ServiceCaptchaTest {
     	setMock.setCaptchalength(4);
     	setMock.setCaseeSensitive(true);
     	setMock.setMode(ModeEnum.ALPHANUMERIC.toString());
-    	
+    		
     }
     
     @Test
