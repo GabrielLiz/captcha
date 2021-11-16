@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  web:
+    image: lizproject/frontcaptcha:1.0.1
+    ports:
+      - "80:80/tcp"
+  backend:
+    image: lizproject/backend-captcha:1.0
+    hostname: backend
+    ports:
+      - "8080:8080"
