@@ -7,14 +7,17 @@ Construida con Angular 13 y Spring 2.5.6, utilizando programacion funcional y We
 Swagger http://localhost:8080/swagger-ui.html definicion de la API
 ![alt text](https://github.com/GabrielLiz/captcha/blob/main/api-example.png?raw=true)
 ## Ejecucion
+* Docker
+  - He agregado un docker-compose `docker-compose up -d` 
 
-- Backend 
-   - instalar y compilar `mvn clean install` 
-   -  Ejecutar en la ruta la  `/target` con el comando `java -jar backend-biocaptcha-0.0.1-SNAPSHOT.jar`
+* Manual
+   - Backend 
+      - instalar y compilar `mvn clean install` 
+      -  Ejecutar en la ruta la  `/target` con el comando `java -jar backend-biocaptcha-0.0.1-SNAPSHOT.jar`
 
-- Front: 
-   - Installar dependencias `npm install` 
-   - Levantar el servicio `ng serve`
+   - Front: 
+      - Installar dependencias `npm install` 
+      - Levantar el servicio `ng serve`
 ## Testing unitario
 
 La clase ServiceCaptchaImpl tiene los test unitarios realizados con Stepverifier al ser desarrollo reactivo.
