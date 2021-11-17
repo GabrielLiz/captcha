@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.server.ServerWebExchange;
 
-import com.captcha.ImageApi;
 import com.captcha.V1Api;
 import com.captcha.model.Captcha;
 import com.captcha.model.ImageDescription;
@@ -28,7 +27,7 @@ import reactor.core.publisher.Mono;
  */
 @CrossOrigin(origins = "*")
 @RestController
-public class CaptchaController implements V1Api,ImageApi{
+public class CaptchaController implements V1Api{
 
 	/** The captcha service. */
 	private ServiceCaptcha captchaService;
