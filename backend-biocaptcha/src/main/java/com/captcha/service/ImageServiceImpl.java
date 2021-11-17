@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,22 +16,43 @@ import com.captcha.model.ImageDescription;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ImageServiceImpl.
+ */
 @Service
 public class ImageServiceImpl implements ImageService {
 
+	/** The Constant FACE_PARAMETER. */
 	private final static String FACE_PARAMETER = "/analyze?language=es&descriptionExclude=Celebrities&visualFeatures=Faces&details=Celebrities";
+	
+	/** The Constant DESCRIPTION. */
 	private final static String DESCRIPTION = "/analyze?language=es&descriptionExclude=Celebrities&visualFeatures=Description&details=Celebrities";
 
-	WebClient client;
+	/** The client. */
+	private WebClient client;
+	
+	/** The key. */
+	@Value("${rapidapi.azurevision}")
+	private String key;
 
+	/**
+	 * Instantiates a new image service impl.
+	 */
 	public ImageServiceImpl() {
 		client = WebClient.builder().baseUrl("https://microsoft-computer-vision3.p.rapidapi.com")
 				.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
 				.defaultHeader("x-rapidapi-host", "microsoft-computer-vision3.p.rapidapi.com")
-				.defaultHeader("x-rapidapi-key", "#####").build();
+				.defaultHeader("x-rapidapi-key", "####").build();
 	}
 
-	public Mono<ImageDescription> request(String url) {
+	/**
+	 * Request.
+	 *
+	 * @param url the url
+	 * @return the mono
+	 */
+	private Mono<ImageDescription> request(String url) {
 		Map<String, String> bodyValues = new HashMap<String, String>();
 		bodyValues.put("url", url);
 
@@ -58,6 +80,12 @@ public class ImageServiceImpl implements ImageService {
 				});
 	}
 
+	/**
+	 * Gets the image description.
+	 *
+	 * @param urls the urls
+	 * @return the image description
+	 */
 	@Override
 	public Flux<ImageDescription> getImageDescription(List<String> urls) {
 		return Flux.fromIterable(urls).flatMap(this::request);
