@@ -17,13 +17,16 @@ import { MatInputModule } from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
+import { ImageVisionComponent } from './views/image-vision/image-vision.component';
+import {TextFieldModule} from '@angular/cdk/text-field';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CaptchaComponent,
-    SettingsComponent
+    SettingsComponent,
+    ImageVisionComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatInputModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    TextFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,11 +1,12 @@
 <div class="container">
     <mat-card class="m-5 row">
         <canvas #canvas class="m-5 col-6"></canvas>
-        <div class="col-5"></div>
-
+        
         <mat-form-field appearance="fill" class="m-3 col-6">
             <input [formControl]="captchaInput" placeholder="Captcha" name="captcha" matInput required />
         </mat-form-field>
+
+
         <div class="col-12">
             <button mat-raised-button class="m-2" color="primary" (click)="beginCaptcha()"> Nuevo</button>
             <button mat-raised-button class="m-2" color="warn" (click)="onSubmit()">Validar</button>
@@ -13,3 +14,6 @@
         </div>
     </mat-card>
 </div>
+
+
+<app-image-vision></app-image-vision>

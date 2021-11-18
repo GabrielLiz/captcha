@@ -1,0 +1,40 @@
+<div class="container">
+
+  <h1>Analisis de imagenes</h1>
+
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+
+
+    <table class="table table-bordered" formArrayName="urlInputs">
+      <tr>
+        <th colspan="2">Añadir imagen:</th>
+        <th width="150px"><button type="button" (click)="addUrlInput()" class="btn btn-primary">Añadir imagen</button>
+        </th>
+      </tr>
+
+      <tr *ngFor="let quantity of urlInputs().controls; let i=index" [formGroupName]="i">
+      
+        <td>
+          URL{{i}} :
+          <input type="url" formControlName="url" class="form-control" placeholder="http://example.com/image.jpg">
+        </td>
+        <td>
+            <div class="col-12">Edad: <input  matInput class="ml-3 w-25" type="text" formControlName="age" readonly /></div>
+            <div class="col-12">Genero: <input matInput class="ml-3 w-25" type="text" formControlName="gender" readonly/></div>
+            <div class="col-12">Descripcion: <input matInput class="ml-3 w-75" type="text" formControlName="text" readonly /></div>
+
+        </td>
+        <td>
+          <button (click)="removeUrlInput(i)" class="btn btn-danger">Remove</button>
+        </td>
+      </tr>
+    </table>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+
+  </form>
+
+  <br />
+
+</div>

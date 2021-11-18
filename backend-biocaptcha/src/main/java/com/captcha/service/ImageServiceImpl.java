@@ -16,7 +16,6 @@ import com.captcha.model.ImageDescription;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ImageServiceImpl.
  */
@@ -32,10 +31,6 @@ public class ImageServiceImpl implements ImageService {
 	/** The client. */
 	private WebClient client;
 	
-	/** The key. */
-	@Value("${rapidapi.azurevision}")
-	private String key;
-
 	/**
 	 * Instantiates a new image service impl.
 	 */
@@ -43,7 +38,7 @@ public class ImageServiceImpl implements ImageService {
 		client = WebClient.builder().baseUrl("https://microsoft-computer-vision3.p.rapidapi.com")
 				.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
 				.defaultHeader("x-rapidapi-host", "microsoft-computer-vision3.p.rapidapi.com")
-				.defaultHeader("x-rapidapi-key", "####").build();
+				.defaultHeader("x-rapidapi-key", "###").build();
 	}
 
 	/**

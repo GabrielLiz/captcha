@@ -18,7 +18,7 @@ export class CaptchaComponent implements OnInit {
   @ViewChild('canvas', { static: true })
   canvs: ElementRef<HTMLCanvasElement>;
 
-  baseURL = 'http://localhost:8080';
+  baseURL = 'http://bio-captcha.westeurope.cloudapp.azure.com:8080';
   captchaURI = '/v1/captcha';
   settingURI = '/v1/captcha/settings';
   validateaURI = '/v1/captcha/validate';
@@ -88,7 +88,9 @@ export class CaptchaComponent implements OnInit {
     dialogConfig.maxWidth = '350px';
     dialogConfig.data = this.conf;
 
-    this.dialog.open(SettingsComponent, dialogConfig);
+    let dialogRef = this.dialog.open(SettingsComponent, dialogConfig);
+    dialogRef.componentInstance.change.subscribe(data => {this.conf=data;});
+
 }
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action);
